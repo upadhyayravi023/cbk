@@ -329,7 +329,7 @@ section {
     padding-right: 1.25rem !important;
   }
 
-  /* Cards must not bleed to the edge */
+  /* ─── Premium card polish on mobile ─── */
   .card,
   .mv-card,
   .highlight-card,
@@ -344,35 +344,33 @@ section {
   .stat-card {
     max-width: 100%;
     box-sizing: border-box;
+    border-radius: 20px;
   }
 
-  /* Images must never overflow their container */
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+  /* Refined shadow on mobile cards */
+  .card, .stat-card { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .card:hover { transform: none; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
 
-  /* Hero image frame never overflows */
-  .main-image-frame {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-  }
+  /* Images must never overflow */
+  img { max-width: 100%; height: auto; }
 
-  /* Gallery masonry gaps shrink */
+  /* Hero image frame */
+  .main-image-frame { width: 100%; max-width: 100%; overflow: hidden; }
+
+  /* Gallery */
   .gallery-masonry { column-gap: 0.75rem; }
   .gallery-tile { margin-bottom: 0.75rem; }
 
-  /* Section padding reduced */
+  /* Section rhythm */
   :root { --section-padding: 3rem 0; }
 
-  /* Hide large decorative blobs that cause overflow */
-  .blob-indigo { width: 300px; height: 300px; right: -50px; }
-  .blob-amber  { width: 200px; height: 200px; left: -30px;  }
-  .bg-blob-1   { width: 250px; height: 250px; right: -50px; }
-  .bg-blob-2   { width: 200px; height: 200px; left: -50px;  }
+  /* Shrink decorative blobs */
+  .blob-indigo { width: 280px; height: 280px; right: -60px; opacity: 0.08; }
+  .blob-amber  { width: 180px; height: 180px; left: -40px;  opacity: 0.08; }
+  .bg-blob-1   { width: 240px; height: 240px; right: -50px; }
+  .bg-blob-2   { width: 180px; height: 180px; left: -50px;  }
 
-  /* CTA section respects side margins */
+  /* CTA section side margins */
   .cta-section {
     margin-left: 1rem !important;
     margin-right: 1rem !important;
@@ -381,24 +379,14 @@ section {
     padding-right: 1.25rem;
   }
 
-  /* Footer CTA strip */
-  .footer-cta-inner {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  /* Prevent horizontal scroll from any absolute element */
-  .bg-decorations,
-  .hero-visual-v2,
-  .image-stack {
-    overflow: hidden;
-  }
+  /* Prevent overflow from absolute children */
+  .bg-decorations, .hero-visual-v2, .image-stack { overflow: hidden; }
 
   /* Gallery lightbox safe */
-  .lightbox-content {
-    width: calc(100vw - 2.5rem) !important;
-    max-width: 100%;
-  }
+  .lightbox-content { width: calc(100vw - 2.5rem) !important; max-width: 100%; }
+
+  /* Section label */
+  .section-label { font-size: 0.72rem; letter-spacing: 1.5px; padding: 0.35rem 1rem; }
 }
 
 @media (max-width: 480px) {
