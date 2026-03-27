@@ -20,7 +20,7 @@
 
 .fac-img-wrap {
   width: 100%;
-  height: 220px;
+  height: clamp(160px, 25vw, 220px);
 }
 .fac-img-wrap img {
   width: 100%; height: 100%;

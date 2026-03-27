@@ -316,20 +316,137 @@ section {
   font-weight: 600;
 }
 
-/* ── Global Responsive Polish ── */
+/* ─────────────────────────────────────────────────────────────
+   GLOBAL MOBILE-FIRST SAFE PADDING RULES
+   Nothing should touch the screen edge on any device.
+   These rules override page-level styles where needed.
+───────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Every container gets safe horizontal padding */
+  .container {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
+  /* Cards must not bleed to the edge */
+  .card,
+  .mv-card,
+  .highlight-card,
+  .program-card,
+  .testimonial-card,
+  .form-card-glass,
+  .admission-support-card,
+  .branches-card,
+  .gallery-admin-card,
+  .testimonial-admin-card,
+  .login-card,
+  .stat-card {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Images must never overflow their container */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Hero image frame never overflows */
+  .main-image-frame {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* Gallery masonry gaps shrink */
+  .gallery-masonry { column-gap: 0.75rem; }
+  .gallery-tile { margin-bottom: 0.75rem; }
+
+  /* Section padding reduced */
+  :root { --section-padding: 3rem 0; }
+
+  /* Hide large decorative blobs that cause overflow */
+  .blob-indigo { width: 300px; height: 300px; right: -50px; }
+  .blob-amber  { width: 200px; height: 200px; left: -30px;  }
+  .bg-blob-1   { width: 250px; height: 250px; right: -50px; }
+  .bg-blob-2   { width: 200px; height: 200px; left: -50px;  }
+
+  /* CTA section respects side margins */
+  .cta-section {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+    border-radius: 24px !important;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* Footer CTA strip */
+  .footer-cta-inner {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* Prevent horizontal scroll from any absolute element */
+  .bg-decorations,
+  .hero-visual-v2,
+  .image-stack {
+    overflow: hidden;
+  }
+
+  /* Gallery lightbox safe */
+  .lightbox-content {
+    width: calc(100vw - 2.5rem) !important;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 480px) {
+  /* Extra tight phones — add even more breathing room */
+  .container {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+
   body { font-size: 15px; }
   .section-label { font-size: 0.75rem; letter-spacing: 1.5px; }
-  /* Ensure buttons stretch to fit on tiny screens */
-  .btn-primary, .btn-secondary, .btn-outline { width: 100%; justify-content: center; max-width: 360px; margin-left: auto; margin-right: auto; }
-  /* Global card safe padding on small phones */
   .card { padding: 1.25rem; }
+
+  /* Buttons are full width on tiny phones */
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary-v2 {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* CTA section buttons */
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .cta-buttons .btn-white-v2,
+  .cta-buttons .btn-outline-white {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+
+  /* Hide decorative blobs completely */
+  .blob-indigo, .blob-amber, .bg-blob-1, .bg-blob-2 { display: none; }
+
+  /* Section titles scale down hard */
+  .section-title { font-size: 1.6rem !important; }
+  :root { --section-padding: 2.5rem 0; }
+
+  /* Admin dashboard full width */
+  .admin-dashboard {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 }
 
 /* ── Safe area support for iPhone notch/home bar ── */
 @supports (padding: env(safe-area-inset-left)) {
   .container {
-    padding-left: max(clamp(1.25rem, 5vw, 2rem), env(safe-area-inset-left));
-    padding-right: max(clamp(1.25rem, 5vw, 2rem), env(safe-area-inset-right));
+    padding-left: max(1.25rem, env(safe-area-inset-left));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
   }
 }
