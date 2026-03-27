@@ -1,0 +1,59 @@
+/* Contact Page */
+.contact-container { padding: var(--section-padding); }
+
+.contact-info-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+.info-card { padding: 2.5rem 2rem; }
+.info-card h3 { font-size: 1.2rem; margin: 0.75rem 0 0.5rem; color: var(--text-dark); }
+.info-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.7; }
+
+/* Main grid */
+.contact-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Branches card */
+.branches-card { padding: 2.5rem; }
+.branches-card h2 { font-size: 1.6rem; margin-bottom: 1.5rem; }
+.branch-list { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem; }
+.branch-item { display: flex; align-items: flex-start; gap: 1rem; }
+.branch-icon-wrap {
+  width: 42px; height: 42px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.branch-item h4 { font-size: 1rem; margin-bottom: 0.25rem; color: var(--text-dark); }
+.branch-item p { color: var(--text-light); font-size: 0.88rem; line-height: 1.6; }
+
+/* Admissions CTA box */
+.admissions-cta-box {
+  background: linear-gradient(135deg, rgba(108,99,255,0.06), rgba(0,212,170,0.04));
+  border: 1px solid rgba(108,99,255,0.12);
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin-top: 1.5rem;
+}
+.admissions-cta-box h4 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+.admissions-cta-box p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem; }
+
+/* Map */
+.map-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 480px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(108,99,255,0.1);
+}
+.map-wrapper iframe { display: block; }
+
+@media (max-width: 900px) {
+  .contact-info-row { grid-template-columns: 1fr; }
+  .contact-main-grid { grid-template-columns: 1fr; }
+  .map-wrapper { height: 320px; }
+}

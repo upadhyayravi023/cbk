@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: cbs-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: ADMIN_USER
+        value: admin
+      - key: ADMIN_PASS
+        value: password123
+      - key: NODE_ENV
+        value: production
