@@ -85,7 +85,8 @@ img { max-width: 100%; height: auto; display: block; }
 .container { 
   max-width: 1240px; 
   margin: 0 auto; 
-  padding: 0 clamp(1rem, 4vw, 2rem);
+  /* Min 1.25rem (20px) safe padding on both sides — adapts with viewport */
+  padding: 0 clamp(1.25rem, 5vw, 2rem);
   width: 100%;
   box-sizing: border-box;
 }
@@ -319,5 +320,16 @@ section {
 @media (max-width: 480px) {
   body { font-size: 15px; }
   .section-label { font-size: 0.75rem; letter-spacing: 1.5px; }
-  .btn-primary, .btn-secondary, .btn-outline { width: 100%; justify-content: center; }
+  /* Ensure buttons stretch to fit on tiny screens */
+  .btn-primary, .btn-secondary, .btn-outline { width: 100%; justify-content: center; max-width: 360px; margin-left: auto; margin-right: auto; }
+  /* Global card safe padding on small phones */
+  .card { padding: 1.25rem; }
+}
+
+/* ── Safe area support for iPhone notch/home bar ── */
+@supports (padding: env(safe-area-inset-left)) {
+  .container {
+    padding-left: max(clamp(1.25rem, 5vw, 2rem), env(safe-area-inset-left));
+    padding-right: max(clamp(1.25rem, 5vw, 2rem), env(safe-area-inset-right));
+  }
 }

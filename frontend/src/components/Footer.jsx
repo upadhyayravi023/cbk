@@ -23,7 +23,10 @@ const Footer = () => {
         <div className="container footer-content">
           {/* Brand */}
           <div className="footer-col brand-col">
-            <img src="/logo.png" alt="Charmingg Blossoms" className="footer-logo-img" />
+            <div className="footer-brand">
+              <img src="/logo.png" alt="Charmingg Blossoms" className="footer-logo-img" />
+              <span className="footer-brand-name">CB Kids</span>
+            </div>
             <p className="footer-desc">
               Nurturing curious, confident, and compassionate learners since 2010.
               Where every child blossoms into their best self.

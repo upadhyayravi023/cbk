@@ -10,7 +10,7 @@
 }
 
 /* Sidebar Process */
-.side-title { font-size: 2rem; color: var(--text-dark); margin-bottom: 2rem; }
+.side-title { font-size: clamp(1.4rem, 3.5vw, 2rem); color: var(--text-dark); margin-bottom: 1.5rem; }
 
 .process-v-steps {
   display: flex;
@@ -55,8 +55,8 @@
 .support-link { color: var(--primary); font-weight: 700; font-size: 1.25rem; text-decoration: none; }
 
 /* Form Card */
-.form-card-glass { padding: 3rem; border-radius: 32px; background: white; box-shadow: var(--shadow-xl); }
-.form-subtitle { font-size: 1.5rem; margin-bottom: 2rem; text-align: center; }
+.form-card-glass { padding: clamp(1.25rem, 4vw, 3rem); border-radius: clamp(16px, 3vw, 32px); background: white; box-shadow: var(--shadow-xl); }
+.form-subtitle { font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 1.5rem; text-align: center; }
 
 .form-row { display: flex; gap: 1rem; }
 .flex-1 { flex: 1; }
@@ -106,12 +106,12 @@
 }
 
 @media (max-width: 768px) {
-  .admissions-container { padding: 3rem 0; }
-  .form-card-glass { padding: 1.5rem; border-radius: 20px; }
-  .side-title { font-size: 1.75rem; margin-bottom: 1.5rem; }
+  .admissions-container { padding: 2.5rem 0; }
+  .form-card-glass { border-radius: 16px; }
   .process-v-steps { gap: 1.25rem; }
 }
 
 @media (max-width: 600px) {
   .form-row { flex-direction: column; gap: 0; }
+  .admission-support-card { padding: 1.25rem; }
 }
