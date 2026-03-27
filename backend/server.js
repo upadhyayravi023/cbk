@@ -12,6 +12,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const JWT_SECRET = process.env.JWT_SECRET;
 const ADMIN_MOBILE = process.env.ADMIN_MOBILE || '9100000000';
+const ADMIN_USER = process.env.ADMIN_USER || 'admin';
+const ADMIN_PASS = process.env.ADMIN_PASS || 'password123';
 
 // Msg91 Configuration
 const msg91AuthKey = process.env.MSG91_AUTH_KEY;
@@ -128,17 +130,12 @@ app.post('/api/auth/send-otp', loginLimiter, async (req, res) => {
     }
   }
 
-  // --- Simulation Fallback (for development or if Msg91 fails) ---
-  // Generate 6-digit OTP locally for simulation
+  // Silent fallback if Msg91 is not configured
   const otp = Math.floor(100000 + Math.random() * 900000).toString();
-  const expires = Date.now() + 5 * 60 * 1000; // 5 mins
+  const expires = Date.now() + 5 * 60 * 1000;
   otps.set(phone, { otp, expires });
 
-  console.log(`\n-----------------------------------------`);
-  console.log(`🔑 [AUTH-SIM] OTP for ${phone}: ${otp}`);
-  console.log(`-----------------------------------------\n`);
-
-  res.status(200).json({ success: true, message: 'OTP sent (Check server terminal for simulation)' });
+  res.status(200).json({ success: true, message: 'OTP sent' });
 });
 
 app.post('/api/auth/verify-otp', loginLimiter, async (req, res) => {
@@ -185,7 +182,26 @@ app.post('/api/auth/verify-otp', loginLimiter, async (req, res) => {
   res.status(200).json({ token, expiresIn: '8h', success: true });
 });
 
-// Old login removed as per "OTP only" requirement
+// --- Classic ID/Password Login ---
+app.post('/api/auth/login', loginLimiter, (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Username and password are required' });
+  }
+
+  if (username === ADMIN_USER && password === ADMIN_PASS) {
+    const token = jwt.sign(
+      { username, role: 'admin' },
+      JWT_SECRET,
+      { expiresIn: '8h' }
+    );
+    console.log(`✅ [AUTH] Admin logged in: ${username}`);
+    return res.status(200).json({ token, expiresIn: '8h', success: true });
+  }
+
+  res.status(401).json({ error: 'Invalid username or password' });
+});
+
 
 // Verify token endpoint (frontend can call to check if token is still valid)
 app.get('/api/auth/verify', verifyToken, (req, res) => {

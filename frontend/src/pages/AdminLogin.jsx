@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Lock, Smartphone, KeyRound, ArrowRight, RefreshCw } from 'lucide-react';
+import { Lock, User, KeyRound, ArrowRight, RefreshCw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import './AdminLogin.css';
@@ -7,50 +7,23 @@ import './AdminLogin.css';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const AdminLogin = () => {
-  const [phone, setPhone] = useState('');
-  const [otp, setOtp] = useState('');
-  const [step, setStep] = useState(1); // 1: Phone, 2: OTP
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSendOtp = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (!phone) return setError('Please enter a valid mobile number.');
-    
-    setLoading(true);
-    setError('');
-    try {
-      const res = await fetch(`${API_URL}/api/auth/send-otp`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone: phone.trim() })
-      });
-      const data = await res.json();
-      
-      if (res.ok) {
-        setStep(2);
-      } else {
-        setError(data.error || 'Failed to send OTP. Check the number.');
-      }
-    } catch (err) {
-      setError('Connection failed. Check if server is running.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleVerifyOtp = async (e) => {
-    e.preventDefault();
-    if (!otp || otp.length < 6) return setError('Please enter the 6-digit OTP.');
+    if (!username || !password) return setError('Please enter both username and password.');
 
     setLoading(true);
     setError('');
     try {
-      const res = await fetch(`${API_URL}/api/auth/verify-otp`, {
+      const res = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ phone, otp })
+        body: JSON.stringify({ username, password })
       });
       const data = await res.json();
       
@@ -58,10 +31,10 @@ const AdminLogin = () => {
         localStorage.setItem('adminToken', data.token);
         navigate('/admin');
       } else {
-        setError(data.error || 'Invalid or expired OTP.');
+        setError(data.error || 'Invalid username or password.');
       }
     } catch (err) {
-      setError('Verification failed. Try again.');
+      setError('Connection failed. Check if server is running.');
     } finally {
       setLoading(false);
     }
@@ -75,9 +48,7 @@ const AdminLogin = () => {
             <Lock size={32} color="white" />
           </div>
           <h2>Admin Portal</h2>
-          <p className="text-light">
-            {step === 1 ? 'Enter your registered mobile' : 'Verify the 6-digit code'}
-          </p>
+            <p className="section-subtitle">Real moments from our campus — uploaded live by our team.</p>
         </div>
 
         {error && (
@@ -87,73 +58,41 @@ const AdminLogin = () => {
         )}
 
         <div className="auth-flow-container">
-          <AnimatePresence mode="wait">
-            {step === 1 ? (
-              <motion.form 
-                key="step1"
-                onSubmit={handleSendOtp} 
-                className="login-form"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-              >
-                <div className="form-group">
-                  <label>Mobile Number</label>
-                  <div className="input-with-icon">
-                    <Smartphone size={18} className="input-icon" />
-                    <input 
-                      type="tel" 
-                      value={phone} 
-                      onChange={(e) => setPhone(e.target.value)} 
-                      placeholder="e.g. 9100000000"
-                      required 
-                    />
-                  </div>
-                </div>
-                <button type="submit" className="btn-primary login-btn" disabled={loading}>
-                  {loading ? 'Sending...' : (
-                    <span className="flex-center gap-2">Send OTP <ArrowRight size={18}/></span>
-                  )}
-                </button>
-              </motion.form>
-            ) : (
-              <motion.form 
-                key="step2"
-                onSubmit={handleVerifyOtp} 
-                className="login-form"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-              >
-                <div className="form-group">
-                  <label>Enter OTP</label>
-                  <div className="input-with-icon">
-                    <KeyRound size={18} className="input-icon" />
-                    <input 
-                      type="text" 
-                      value={otp} 
-                      onChange={(e) => setOtp(e.target.value)} 
-                      placeholder="6-digit code"
-                      maxLength={6}
-                      required 
-                    />
-                  </div>
-                  <p className="resend-hint">Check your server terminal for simulation OTP.</p>
-                </div>
-                <button type="submit" className="btn-primary login-btn" disabled={loading}>
-                  {loading ? 'Verifying...' : 'Verify & Sign In'}
-                </button>
-                <button 
-                  type="button" 
-                  className="btn-ghost-sm mt-3" 
-                  onClick={() => setStep(1)}
-                  disabled={loading}
-                >
-                  <RefreshCw size={14}/> Change Number
-                </button>
-              </motion.form>
-            )}
-          </AnimatePresence>
+          <form onSubmit={handleLogin} className="login-form">
+            <div className="form-group">
+              <label>Username</label>
+              <div className="input-with-icon">
+                <User size={18} className="input-icon" />
+                <input 
+                  type="text" 
+                  value={username} 
+                  onChange={(e) => setUsername(e.target.value)} 
+                  placeholder="Admin ID"
+                  required 
+                />
+              </div>
+            </div>
+            
+            <div className="form-group">
+              <label>Password</label>
+              <div className="input-with-icon">
+                <KeyRound size={18} className="input-icon" />
+                <input 
+                  type="password" 
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)} 
+                  placeholder="••••••••"
+                  required 
+                />
+              </div>
+            </div>
+
+            <button type="submit" className="btn-primary login-btn" disabled={loading}>
+              {loading ? 'Signing In...' : (
+                <span className="flex-center gap-2">Sign In <ArrowRight size={18}/></span>
+              )}
+            </button>
+          </form>
         </div>
       </motion.div>
     </div>
