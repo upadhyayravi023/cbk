@@ -1,5 +1,5 @@
 .hero {
-  padding: 6rem 0 8rem;
+  padding: clamp(4rem, 10vw, 8rem) 0;
   background: var(--background);
   position: relative;
   overflow: hidden;
@@ -30,7 +30,7 @@
 .hero-split {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  gap: 6rem;
+  gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
 }
 
@@ -56,7 +56,7 @@
 }
 
 .hero-content-v2 h1 {
-  font-size: 4.5rem;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
   line-height: 1.1;
   margin-bottom: 2rem;
   letter-spacing: -0.03em;
@@ -106,8 +106,8 @@
 .main-image-frame {
   position: relative;
   width: 100%;
-  height: 520px;
-  border-radius: 40px;
+  height: clamp(300px, 45vw, 520px);
+  border-radius: clamp(20px, 4vw, 40px);
   background: #f1f5f9;
   z-index: 2;
 }
@@ -148,14 +148,14 @@
 .badge-text span { font-size: 0.85rem; color: var(--text-light); }
 
 /* ── Why Us V2 ── */
-.why-us-v2 { background: white; padding: 10rem 0; }
-.why-split-v2 { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 8rem; align-items: center; }
+.why-us-v2 { background: white; padding: clamp(4rem, 10vw, 10rem) 0; }
+.why-split-v2 { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(3rem, 7vw, 8rem); align-items: center; }
 
 .image-stack { position: relative; padding: 2rem; }
 .img-large {
-  width: 100%; height: 500px;
+  width: 100%; height: clamp(280px, 40vw, 500px);
   object-fit: cover;
-  border-radius: 30px;
+  border-radius: clamp(16px, 3vw, 30px);
   position: relative; z-index: 2;
   box-shadow: var(--shadow-lg);
 }
@@ -234,16 +234,16 @@
 
 /* CTA Section V2 */
 .cta-section {
-  padding: 8rem 0;
-  background: var(--text-dark); /* Modern dark contrast */
+  padding: clamp(4rem, 8vw, 8rem) 0;
+  background: var(--text-dark);
   color: white;
   text-align: center;
   position: relative;
   overflow: hidden;
-  border-radius: 60px;
-  margin: 0 1.5rem 4rem;
+  border-radius: clamp(24px, 5vw, 60px);
+  margin: 0 clamp(0.75rem, 2vw, 1.5rem) clamp(2rem, 4vw, 4rem);
 }
-.cta-section h2 { color: white; font-size: 3.5rem; margin-bottom: 1.5rem; }
+.cta-section h2 { color: white; font-size: clamp(1.8rem, 5vw, 3.5rem); margin-bottom: 1.5rem; }
 .cta-section p { font-size: 1.25rem; color: rgba(255,255,255,0.7); margin-bottom: 3.5rem; }
 .cta-buttons { display: flex; gap: 1.5rem; justify-content: center; }
 
