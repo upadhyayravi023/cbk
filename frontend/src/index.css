@@ -279,3 +279,31 @@ section {
   margin-bottom: 1.5rem;
   font-weight: 600;
 }
+
+/* ── Responsive Global ── */
+@media (max-width: 1024px) {
+  :root {
+    --section-padding: 5rem 0;
+  }
+  .section-title { font-size: 2.2rem; }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 3.5rem 0;
+    --border-radius: 18px;
+  }
+  .section-title { font-size: 1.85rem; margin-bottom: 0.5rem; }
+  .section-subtitle { margin-bottom: 2rem; font-size: 0.95rem; }
+  .btn-primary, .btn-secondary, .btn-outline {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-padding: 2.5rem 0;
+  }
+  .container { padding: 0 1.25rem; }
+}

@@ -117,3 +117,12 @@
   .footer-cta-inner { flex-direction: column; text-align: center; }
   .fb-inner { flex-direction: column; text-align: center; }
 }
+
+@media (max-width: 480px) {
+  .footer-body { padding: 4rem 0 3rem; }
+  .footer-logo-img { height: 50px; }
+  .footer-cta-strip h3 { font-size: 1.4rem; }
+  .social-links { justify-content: center; }
+  .footer-links { text-align: center; }
+  .footer-contact-list li { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
+}

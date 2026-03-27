@@ -94,17 +94,24 @@
 .success-overlay h3 { font-size: 2rem; margin-bottom: 1rem; }
 .success-overlay p { font-size: 1.1rem; color: var(--text-light); }
 
+@media (max-width: 1024px) {
+  .admission-main-grid { gap: 2rem; }
+}
+
 @media (max-width: 900px) {
   .admission-main-grid { grid-template-columns: 1fr; gap: 3rem; }
   .admission-process-sidebar { order: 2; }
   .admission-form-wrapper { order: 1; }
-  .form-card-glass { padding: 2rem; }
+  .form-card-glass { padding: 2.5rem; }
 }
+
 @media (max-width: 768px) {
-  .admissions-container { padding: 4rem 0; }
+  .admissions-container { padding: 3rem 0; }
   .form-card-glass { padding: 1.5rem; border-radius: 20px; }
-  .side-title { font-size: 1.75rem; }
+  .side-title { font-size: 1.75rem; margin-bottom: 1.5rem; }
+  .process-v-steps { gap: 1.25rem; }
 }
+
 @media (max-width: 600px) {
   .form-row { flex-direction: column; gap: 0; }
 }

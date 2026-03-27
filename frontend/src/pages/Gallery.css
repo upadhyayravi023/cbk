@@ -188,20 +188,18 @@
 }
 .collection-item:hover img { transform: scale(1.08); }
 
-@keyframes slideUp {
-  from { opacity:0; transform: translateY(20px); }
-  to { opacity:1; transform: translateY(0); }
-}
-
-.image-count-badge {
-  position: absolute;
-  top: 15px; right: 15px;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(8px);
-  color: white;
-  padding: 4px 12px;
-  border-radius: 50px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  z-index: 2;
+/* Responsive Gallery minor fixes */
+@media (max-width: 768px) {
+  .gallery-container { padding: 3rem 0; }
+  .lightbox-backdrop { padding: 1rem; }
+  .lightbox-content { border-radius: 16px; }
+  .lightbox-image-container { min-height: 250px; }
+  .lightbox-info { padding: 1.5rem; }
+  .lightbox-info h3 { font-size: 1.4rem; }
+  
+  .nav-btn { width: 44px; height: 44px; font-size: 1.5rem; }
+  .nav-btn.prev { left: 10px; }
+  .nav-btn.next { right: 10px; }
+  
+  .collection-title-area h2 { font-size: 1.7rem; }
 }
