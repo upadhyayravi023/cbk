@@ -70,6 +70,13 @@
 @media (max-width: 900px) {
   .program-card-row { grid-template-columns: 1fr; direction: ltr !important; }
   .program-card-row.reverse > * { direction: ltr; }
-  .prog-visual { padding: 2.5rem; }
-  .prog-content { padding: 2rem; }
+  .prog-visual { flex: none; height: 280px; width: 100%; padding: 0; }
+  .prog-content { padding: 2rem 1.5rem; }
+  .prog-title { font-size: 1.7rem; }
+}
+
+@media (max-width: 480px) {
+  .prog-visual { height: 220px; }
+  .prog-meta { gap: 0.75rem; }
+  .prog-cta { width: 100%; justify-content: center; }
 }
