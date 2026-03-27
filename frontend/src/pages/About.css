@@ -175,12 +175,52 @@
 .teal-bg { background: #ccfbf1; }
 .pink-bg { background: #ffe4e6; }
 
+@media (max-width: 1024px) {
+  .phil-v2-grid { gap: 3rem; }
+  .phil-v2-img { height: 400px; }
+  .journey-timeline { gap: 3rem; margin-top: 3rem; }
+}
+
 @media (max-width: 992px) {
   .mv-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .phil-grid, .team-grid { grid-template-columns: 1fr; }
+  .phil-v2-grid { grid-template-columns: 1fr; text-align: center; }
+  .phil-v2-img { height: 350px; }
+  .phil-list-v2 { align-items: center; }
+  .phil-item-v2 { text-align: left; max-width: 500px; }
+  
+  .timeline-line { left: 30px; }
+  .timeline-node, .timeline-node:nth-child(even) {
+    width: 100%;
+    padding: 0 0 0 5rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  .node-year, .timeline-node:nth-child(even) .node-year {
+    left: 30px;
+    right: auto;
+    width: 60px; height: 60px;
+    font-size: 0.9rem;
+    transform: translate(-50%, -50%);
+  }
 }
 
 @media (max-width: 768px) {
-  .about-container { padding: 4rem 0; }
-  .mv-card { padding: 2.5rem 2rem; }
+  .about-container { padding: 3rem 0; }
+  .mv-card { padding: 2.5rem 1.75rem; }
+  .mv-card h2 { font-size: 1.5rem; }
+  .mv-card p { font-size: 1rem; }
+  
+  .phil-v2-img { height: 280px; border-radius: 20px; }
+  .phil-badge-float { bottom: 1rem; right: 1rem; font-size: 0.8rem; padding: 0.5rem 1rem; }
+  
+  .journey-section { border-radius: 30px; padding: 2.5rem 1rem; }
+}
+
+@media (max-width: 480px) {
+  .timeline-line { left: 20px; }
+  .timeline-node, .timeline-node:nth-child(even) { padding-left: 3.5rem; }
+  .node-year, .timeline-node:nth-child(even) .node-year { left: 20px; width: 50px; height: 50px; font-size: 0.8rem; }
+  .node-content { padding: 1.25rem; }
+  .node-content h4 { font-size: 1.1rem; }
 }
