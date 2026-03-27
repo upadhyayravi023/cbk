@@ -26,6 +26,7 @@ const Navbar = () => {
         <div className="nav-container">
           <Link to="/" className="nav-logo">
             <img src="/logo.png" alt="Charmingg Blossoms" className="logo-img" />
+            <span className="logo-text">CB KIDS</span>
           </Link>
           
           <div className={`nav-links ${isOpen ? 'active' : ''}`}>
