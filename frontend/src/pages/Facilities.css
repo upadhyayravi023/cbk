@@ -1,14 +1,14 @@
 /* Facilities Page */
-.page-header { padding: 4rem 0 2rem; background: var(--bg-soft); }
+.page-header { padding: clamp(2rem, 5vw, 4rem) 0 clamp(1rem, 2.5vw, 2rem); background: var(--bg-soft); }
 .facilities-container { padding: var(--section-padding); }
 
-.fac-intro { margin-bottom: 4rem; text-align: center; }
+.fac-intro { margin-bottom: clamp(2rem, 4vw, 4rem); text-align: center; }
 
 .fac-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-bottom: 5rem;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
 }
 
 .fac-card-v2 {
@@ -16,11 +16,13 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  max-width: 100%;
 }
 
 .fac-img-wrap {
   width: 100%;
-  height: clamp(160px, 25vw, 220px);
+  height: clamp(140px, 20vw, 220px);
+  overflow: hidden;
 }
 .fac-img-wrap img {
   width: 100%; height: 100%;
@@ -28,15 +30,15 @@
 }
 
 .fac-info {
-  padding: 1.5rem 2rem 2rem;
+  padding: clamp(1rem, 2.5vw, 1.5rem) clamp(1rem, 2.5vw, 2rem) clamp(1.25rem, 3vw, 2rem);
   position: relative;
 }
 
 .fac-icon-mini {
   position: absolute;
-  top: -24px;
-  right: 2rem;
-  width: 48px; height: 48px;
+  top: -22px;
+  right: clamp(1rem, 2.5vw, 2rem);
+  width: 44px; height: 44px;
   border-radius: 12px;
   display: flex; align-items: center; justify-content: center;
   color: white;
@@ -44,29 +46,31 @@
   border: 2px solid white;
 }
 
-.fac-card-v2 h3 { font-size: 1.25rem; margin-bottom: 0.75rem; color: var(--text-dark); }
-.fac-card-v2 p { color: var(--text-light); font-size: 0.95rem; line-height: 1.6; padding-right: 1rem; }
+.fac-card-v2 h3 { font-size: clamp(1rem, 2.5vw, 1.25rem); margin-bottom: 0.6rem; color: var(--text-dark); }
+.fac-card-v2 p { color: var(--text-light); font-size: clamp(0.82rem, 1.5vw, 0.95rem); line-height: 1.6; padding-right: 0.5rem; }
 
 /* CTA Box */
 .fac-cta-box {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3rem 4rem;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4vw, 4rem);
   background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
-  gap: 3rem;
+  gap: clamp(1rem, 3vw, 3rem);
   flex-wrap: wrap;
+  border-radius: var(--border-radius);
 }
-.fac-cta-content { flex: 1; min-width: 300px; }
-.fac-cta-box h3 { font-size: 1.75rem; color: var(--text-dark); margin-bottom: 0.5rem; }
-.fac-cta-box p { color: var(--text-light); font-size: 1.05rem; }
+.fac-cta-content { flex: 1; min-width: min(260px, 100%); }
+.fac-cta-box h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); color: var(--text-dark); margin-bottom: 0.5rem; }
+.fac-cta-box p { color: var(--text-light); font-size: clamp(0.9rem, 1.5vw, 1.05rem); }
 
-@media (max-width: 992px) {
-  .fac-grid { grid-template-columns: 1fr 1fr; }
-}
 @media (max-width: 768px) {
-  .fac-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-  .fac-info { padding: 1.25rem 1.5rem 1.75rem; }
-  .fac-cta-box { padding: 2rem 1.5rem; text-align: center; justify-content: center; border-radius: 24px; }
-  .fac-cta-box h3 { font-size: 1.4rem; }
+  .fac-grid { grid-template-columns: 1fr; }
+  .fac-cta-box { flex-direction: column; text-align: center; align-items: center; }
+  .fac-cta-content { min-width: 0; width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .fac-grid { gap: 0.875rem; }
+  .fac-img-wrap { height: clamp(120px, 35vw, 180px); }
 }
